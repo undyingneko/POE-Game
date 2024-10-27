@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,12 @@ public class CharacterMovement : MonoBehaviour
     }
     public void SetDestination(Vector3 destinationPosition)
     {
+        agent.isStopped = false;
         agent.SetDestination(destinationPosition);
     }
 
-
+    internal void Stop()
+    {
+        agent.isStopped = true;
+    }
 }

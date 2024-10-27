@@ -7,9 +7,9 @@ public class InteractInput : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI textOnScreen;
 
-    InteractableObject hoveringOverObject;
+    [HideInInspector]
+    public InteractableObject hoveringOverObject;
 
-    // Update is called once per frame
 
     void Update()
     {
