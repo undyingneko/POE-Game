@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterUi : MonoBehaviour
+public class CharacterUI : MonoBehaviour
 {
     Character character;
     [SerializeField] UIPoolBar hpBar;
