@@ -15,7 +15,12 @@ public class InteractableObject : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log(postMessage);
+        if (postMessage != "")
+        {
+            GameSceneManager.instance.StartTransition(postMessage);
+        }
+
+           
     }
 
 

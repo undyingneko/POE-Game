@@ -18,14 +18,6 @@ public class InteractInput : MonoBehaviour
     void Update()
     {
         CheckInteractObject();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (hoveringOverObject != null)
-            {
-                hoveringOverObject.Interact();
-            }
-        }
     }
 
     private void CheckInteractObject()
@@ -71,6 +63,17 @@ public class InteractInput : MonoBehaviour
         else{
             hpBar.Clear();
         }
+    }
+
+    internal void Interact()
+    {
+        hoveringOverObject.Interact();
+    }
+
+    internal bool InteractCheck()
+    {
+        return hoveringOverObject != null;
+        
     }
 }
 

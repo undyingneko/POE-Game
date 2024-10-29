@@ -13,12 +13,10 @@ public class CharacterMovementInput : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
     }
 
-    private void Update()
+    public void MoveInput()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            characterMovement.SetDestination(mouseInput.mouseInputPosition);
-        }
+        characterMovement.SetDestination(mouseInput.mouseInputPosition);
     }
+
 
 }
