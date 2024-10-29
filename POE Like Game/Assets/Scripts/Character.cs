@@ -110,6 +110,11 @@ public class ValuePool
         this.maxValue = maxValue;
         this.currentValue = maxValue.integer_value;
     }
+
+    internal void FullRestore()
+    {
+        currentValue = maxValue.integer_value;
+    }
 }
 
 
@@ -153,14 +158,18 @@ public class Character : MonoBehaviour
         return damage;
     }
 
+    internal void Restore()
+    {
+        lifePool.FullRestore();
+        isDead = false;
+    }
 
-
-
-private void CheckDeath()
+    private void CheckDeath()
     {
         if (lifePool.currentValue <= 0)
         {
             isDead = true;
+            GetComponent<CharacterDefeatHandler>().Defeated();
         } 
     }
 
@@ -169,9 +178,5 @@ private void CheckDeath()
         return stats.Get(statisticToGet);
     }
 
-
-
-
-
-
+   
 }

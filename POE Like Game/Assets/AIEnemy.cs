@@ -14,8 +14,18 @@ public class AIEnemy : MonoBehaviour
     [SerializeField] Character target;
     float timer = 4f;
 
+    private void Start()
+    {
+        target = GameManager.instance.playerObject.GetComponent<Character>();
+    }
+
+
     private void Update()
     {
+        if (target == null || target.isDead)
+        {
+            return;
+        }
         timer -= Time.deltaTime;
         
         if (timer < 0f)
@@ -24,8 +34,6 @@ public class AIEnemy : MonoBehaviour
 
             attackHandler.Attack(target);
         }
-
-
     }
 
 

@@ -2878,6 +2878,7 @@ MonoBehaviour:
       integer_value: 0
       float_value: 0
     currentValue: 0
+  isDead: 0
 --- !u!4 &4413008257432514976
 Transform:
   m_ObjectHideFlags: 0
@@ -3353,6 +3354,7 @@ GameObject:
   - component: {fileID: 4409288756248630263}
   - component: {fileID: 7309050121492808692}
   - component: {fileID: 7309050121492808693}
+  - component: {fileID: 7309050121492808694}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -3873,6 +3875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a595d6b3826a340ae0a67caf257381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  default_MoveSpeed: 3.5
 --- !u!4 &6718054735921772992
 Transform:
   m_ObjectHideFlags: 0
@@ -4182,12 +4185,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5358135879609503252}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 713556c1d35e36747802dbe7fd571c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+--- !u!114 &7309050121492808694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358135879609503252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f702fc097933b294ea183d114447cb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 0
+  defeatedPanel: {fileID: 0}
 --- !u!4 &7368127436448331860
 Transform:
   m_ObjectHideFlags: 0
