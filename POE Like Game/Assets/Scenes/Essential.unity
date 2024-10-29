@@ -2235,6 +2235,10 @@ PrefabInstance:
       propertyPath: textOnScreen
       value: 
       objectReference: {fileID: 496916201}
+    - target: {fileID: 3419920538162806722, guid: 3046c4b1372a9ca4f842af1fbb810bd7, type: 3}
+      propertyPath: interactRange
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4763102521912434859, guid: 3046c4b1372a9ca4f842af1fbb810bd7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
