@@ -6,10 +6,14 @@ using UnityEngine;
 public class AttackHandler : MonoBehaviour
 {
     Character character;
-    [SerializeField] float attackRange = 1f;
-    CharacterMovement characterMovement;
+    [SerializeField] float attackRange = 2.5f;
+    [SerializeField] float defaultTimeToAttack = 2f;
+    float attackTimer;
+
     Animator animator;
-    InteractableObject target;
+    CharacterMovement characterMovement;
+
+    Character target;
  
     private void Awake()
     {
@@ -20,19 +24,29 @@ public class AttackHandler : MonoBehaviour
 
     private void Update()
     {
+        AttackTimerTick();
+
         if (target != null)
         {
             ProcessAttack();
         }
     }
 
-    internal void Attack(InteractableObject target)
+  
+
+    internal void Attack(Character target)
     {
         this.target = target;
         ProcessAttack();
     }
 
-
+    private void AttackTimerTick()
+    {
+        if (attackTimer > 0f)
+        {
+            attackTimer -= Time.deltaTime;
+        }
+    }
 
     private void ProcessAttack()
     {
@@ -40,11 +54,14 @@ public class AttackHandler : MonoBehaviour
 
         if (distance < attackRange)
         {
+            if (attackTimer > 0f) { return; }
+
+            attackTimer = GetAttackTime();
+
             characterMovement.Stop();
             animator.SetTrigger("Attack");
-            Character targetCharacterToAttack = target.GetComponent<Character>();
 
-            targetCharacterToAttack.TakeDamage(character.TakeStats(Statistic.Damage).value);
+            target.TakeDamage(character.TakeStats(Statistic.Damage).integer_value);
 
             target = null;
         }
@@ -54,5 +71,15 @@ public class AttackHandler : MonoBehaviour
             characterMovement.SetDestination(target.transform.position);
         }
     }
+
+    float GetAttackTime()
+    {
+        float attackTime = defaultTimeToAttack;
+
+        attackTime /= character.TakeStats(Statistic.AttackSpeed).float_value;
+
+        return attackTime;
+    }
+
 }
 

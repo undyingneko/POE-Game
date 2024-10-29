@@ -23,7 +23,7 @@ public class UIPoolBar : MonoBehaviour
     private void Update()
     {
         if (targetPool == null) { return; }
-        bar.fillAmount = Mathf.InverseLerp(0f, targetPool.maxValue.value, targetPool.currentValue);
+        bar.fillAmount = Mathf.InverseLerp(0f, targetPool.maxValue.integer_value, targetPool.currentValue);
     }
 
 
