@@ -98,12 +98,12 @@ public class ValuePool
 }
 
 
-
+//-----------------------------------------------------------------------------------------------------------
 public class Character : MonoBehaviour
 {
     [SerializeField] AttributeGroup attributes;
     [SerializeField] StatsGroup stats;
-    [SerializeField] ValuePool lifePool;
+    public ValuePool lifePool;
     void Start()
     {
         attributes = new AttributeGroup();

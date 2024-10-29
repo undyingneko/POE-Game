@@ -6,9 +6,12 @@ using UnityEngine;
 public class InteractInput : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI textOnScreen;
+    [SerializeField] UIPoolBar hpBar;
+    GameObject currentHoverOverObject;
 
     [HideInInspector]
     public InteractableObject hoveringOverObject;
+    Character hoveringOverCharacter;
 
 
     void Update()
@@ -19,7 +22,6 @@ public class InteractInput : MonoBehaviour
         {
             if (hoveringOverObject != null)
             {
-
                 hoveringOverObject.Interact();
             }
         }
@@ -32,18 +34,45 @@ public class InteractInput : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            InteractableObject interactableObject = hit.transform.GetComponent<InteractableObject>();
-            if (interactableObject != null)
+            if (currentHoverOverObject != hit.transform.gameObject)
             {
-                hoveringOverObject = interactableObject;
-                textOnScreen.text = hoveringOverObject.objectName;
-            }
-            else{
-                hoveringOverObject = null;
-                textOnScreen.text = "";
+                currentHoverOverObject = hit.transform.gameObject;
+                UpdateInteractableObject(hit);
             }
         }
+    }
 
+    void UpdateInteractableObject(RaycastHit hit)
+    {
+        InteractableObject interactableObject = hit.transform.GetComponent<InteractableObject>();
+        if (interactableObject != null)
+        {
+            hoveringOverObject = interactableObject;
+            hoveringOverCharacter = interactableObject.GetComponent<Character>();
+            textOnScreen.text = hoveringOverObject.objectName;
+        }
+        else
+        {
+            hoveringOverCharacter = null;
+            hoveringOverObject = null;
+            textOnScreen.text = "";
+        }
+        
+        UpdateHPBar();
+    }
 
+    private void UpdateHPBar()
+    {
+        if (hoveringOverCharacter != null)
+        {
+            hpBar.Show(hoveringOverCharacter.lifePool);
+        }
+        else{
+            hpBar.Clear();
+        }
     }
 }
+
+
+
+
