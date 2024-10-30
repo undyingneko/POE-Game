@@ -55,15 +55,13 @@ public class ItemGrid : MonoBehaviour
         itemRectTransform.localPosition = CalculatePositionOfObjectOnGrid(itemToPlace, x, y);
     }
 
-    private static Vector2 CalculatePositionOfObjectOnGrid(InventoryItem item, int x, int y)
+    public Vector2 CalculatePositionOfObjectOnGrid(InventoryItem item, int x, int y)
     {
         Vector2 positionOnGrid = new Vector2();
         positionOnGrid.x = TileSizeWidth * x + TileSizeWidth * item.itemData.sizeWidth / 2;
         positionOnGrid.y = -(TileSizeHeight * y + TileSizeHeight * item.itemData.sizeHeight / 2);
         return positionOnGrid;
     }
-
-
 
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)
     {
@@ -113,8 +111,6 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-
-
     public bool BoundryCheck(int posX, int posY, int width, int height)
     {
         if (PositionCheck(posX, posY) == false) { return false; }
@@ -125,10 +121,7 @@ public class ItemGrid : MonoBehaviour
         if (PositionCheck(posX, posY) == false) { return false; }
 
         return true;
-
-
     }
-
 
     public bool CheckOverlap(int posX, int posY, int sizeWidth, int sizeHeight, ref InventoryItem overlapItem)
     {
@@ -154,5 +147,10 @@ public class ItemGrid : MonoBehaviour
         }
 
         return true;
+    }
+
+    internal InventoryItem Gettem(int x, int y)
+    {
+        return inventoryItemGrid[x, y];
     }
 }
