@@ -891,7 +891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342748491}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35852152, y: 0.000000029895727, z: -0.0000000114815375, w: 0.93352145}
+  m_LocalRotation: {x: 0.35852155, y: -0.000000010942599, z: 0.0000000042025365, w: 0.93352145}
   m_LocalPosition: {x: 0, y: 9.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2021,7 +2021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35852152, y: 0.000000029895727, z: -0.0000000114815375, w: 0.93352145}
+  m_LocalRotation: {x: 0.35852155, y: -0.000000010942599, z: 0.0000000042025365, w: 0.93352145}
   m_LocalPosition: {x: 0, y: 9.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2965,6 +2965,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedItemGrid: {fileID: 0}
+  itemDatas:
+  - {fileID: 11400000, guid: bfe9699d37d501f4f9f28f4daca2eb4d, type: 2}
+  - {fileID: 11400000, guid: 1a16e8efe8d6956418060ffc6e0e6331, type: 2}
+  - {fileID: 11400000, guid: 6a132f128e1fcd74ab49e89bff093062, type: 2}
+  inventoryItemPrefab: {fileID: 1103169636117062840, guid: 90bb2592c1ea21f409231d103bf1c5f3, type: 3}
+  targetCanvas: {fileID: 1526262565}
 --- !u!114 &1618027425
 MonoBehaviour:
   m_ObjectHideFlags: 0
