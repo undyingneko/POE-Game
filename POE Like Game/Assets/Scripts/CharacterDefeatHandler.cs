@@ -33,26 +33,49 @@ public class CharacterDefeatHandler : MonoBehaviour
 
     public void Defeated()
     {
-        if (agent != null && agent.isOnNavMesh && agent.enabled)
-        {
-            agent.isStopped = true;
-            agent.enabled = false;
-        }
+        // if (agent != null && agent.isOnNavMesh && agent.enabled)
+        // {
+        //     agent.isStopped = true;
+        //     agent.enabled = false;
+        // }
         SetState(false);
     }
 
     internal void Respawn()
     {
-        if (agent != null && NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
-        {
-            transform.position = hit.position; // Place character on the nearest NavMesh point
-            agent.enabled = true;
-            agent.isStopped = false;
-        }
+        // if (agent != null && NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
+        // {
+        //     transform.position = hit.position; // Place character on the nearest NavMesh point
+     
+        // }
         SetState(true);
     }
     void SetState(bool state)
     {
+        if (agent != null && state == true)
+        {
+            // Ensure the agent is on a NavMesh before enabling it
+            if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
+            {
+                transform.position = hit.position; // Adjust position to the nearest NavMesh point
+                agent.enabled = true;
+                agent.isStopped = false;
+            }
+            else
+            {
+                Debug.LogWarning("Agent cannot be placed on NavMesh for respawn.");
+                agent.enabled = false;
+            }
+        }
+        else if (agent != null && state == false)
+        {
+            agent.isStopped = true;
+            agent.enabled = false;
+        }
+        
+        // agent.isStopped = !state;
+        // agent.enabled = state;
+
         objectCollider.enabled = state;
 
         //AI part

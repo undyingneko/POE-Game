@@ -21,7 +21,10 @@ public class CharacterMovement : MonoBehaviour
         moveSpeed = character.TakeStats(Statistic.MoveSpeed);
         UpdateMoveSpeed();
     }
-
+    private void UpdateMoveSpeed()
+    {
+        agent.speed = default_MoveSpeed * moveSpeed.float_value;
+    }
     private void Update()
     {
         if (current_MoveSpeed != moveSpeed.float_value)
@@ -29,11 +32,6 @@ public class CharacterMovement : MonoBehaviour
             current_MoveSpeed = moveSpeed.float_value;
             UpdateMoveSpeed();
         }
-    }
-
-    private void UpdateMoveSpeed()
-    {
-        agent.speed = default_MoveSpeed * moveSpeed.float_value;
     }
 
     public void SetDestination(Vector3 destinationPosition)
@@ -46,4 +44,6 @@ public class CharacterMovement : MonoBehaviour
     {
         agent.isStopped = true;
     }
+  
+ 
 }
