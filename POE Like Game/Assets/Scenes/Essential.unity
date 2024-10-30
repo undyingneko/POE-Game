@@ -891,7 +891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342748491}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35852155, y: -0.000000010942599, z: 0.0000000042025365, w: 0.93352145}
+  m_LocalRotation: {x: 0.35852152, y: 0.000000029895727, z: -0.0000000114815375, w: 0.93352145}
   m_LocalPosition: {x: 0, y: 9.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2021,7 +2021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35852155, y: -0.000000010942599, z: 0.0000000042025365, w: 0.93352145}
+  m_LocalRotation: {x: 0.35852152, y: 0.000000029895727, z: -0.0000000114815375, w: 0.93352145}
   m_LocalPosition: {x: 0, y: 9.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2896,7 +2896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1221.4, y: 522}
+  m_AnchoredPosition: {x: 1303, y: 349.43}
   m_SizeDelta: {x: 512, y: 224}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1618027421
@@ -2911,6 +2911,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4585cef449f0284ba66b24c372e531b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridSizeWidth: 16
+  gridSizeHeight: 7
+  inventoryItemPrefab: {fileID: 1103169636117062840, guid: 90bb2592c1ea21f409231d103bf1c5f3, type: 3}
 --- !u!114 &1618027422
 MonoBehaviour:
   m_ObjectHideFlags: 0
