@@ -22,7 +22,26 @@ public class InventoryHighlight : MonoBehaviour
             targetItem.positionOnGridX,
             targetItem.positionOnGridY
             );
+        highlighter.localPosition = position;
     }
+
+    public void SetPosition(ItemGrid targetGird, InventoryItem targetItem, int posX, int posY)
+    {
+        Vector2 pos = targetGird.CalculatePositionOfObjectOnGrid(
+        targetItem,
+        posX,
+        posY
+        );
+
+        highlighter.localPosition = pos;
+    }
+
+
+    public void Show(bool set)
+    {
+        highlighter.gameObject.SetActive(set);
+    }
+
 
 
 }

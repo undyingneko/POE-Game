@@ -37,12 +37,16 @@ public class InventoryController : MonoBehaviour
 
         if (selectedItem == null)
         {
-            itemToHighlight = selectedItemGrid.Gettem(positionOnGrid.x, positionOnGrid.y);
+            itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x, positionOnGrid.y);
 
             if (itemToHighlight != null)
             {
+                inventoryHighlight.Show(true);
                 inventoryHighlight.SetSize(itemToHighlight);
                 inventoryHighlight.SetPosition(selectedItemGrid, itemToHighlight);
+            }
+            else {
+                inventoryHighlight.Show(false);
             }
 
         }

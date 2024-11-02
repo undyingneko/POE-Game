@@ -149,7 +149,7 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    internal InventoryItem Gettem(int x, int y)
+    internal InventoryItem GetItem(int x, int y)
     {
         return inventoryItemGrid[x, y];
     }
