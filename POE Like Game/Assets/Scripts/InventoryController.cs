@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    [HideInInspector] public ItemGrid selectedItemGrid;
+    [HideInInspector] private ItemGrid selectedItemGrid;
     Vector2Int positionOnGrid;
     InventoryItem selectedItem;
     InventoryItem overlapItem;
@@ -16,6 +16,17 @@ public class InventoryController : MonoBehaviour
     [SerializeField] Transform targetCanvas;
     [SerializeField] InventoryHighlight inventoryHighlight;
     InventoryItem itemToHighlight;
+
+    public ItemGrid SelectedItemGrid
+    {
+        get => selectedItemGrid;
+        set
+        {
+            selectedItemGrid = value;
+            inventoryHighlight.SetParent(value);
+        }
+    }
+
 
     private void Update()
     {
@@ -34,7 +45,7 @@ public class InventoryController : MonoBehaviour
     private void HandleHighlight()
     {
         Vector2Int positionOnGrid = GetTileGridPosition();
-
+   
         if (selectedItem == null)
         {
             itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x, positionOnGrid.y);
@@ -48,11 +59,21 @@ public class InventoryController : MonoBehaviour
             else {
                 inventoryHighlight.Show(false);
             }
-
         }
         else {
+            inventoryHighlight.Show(selectedItemGrid.BoundryCheck(
+                positionOnGrid.x,
+                positionOnGrid.y,
+                selectedItem.itemData.sizeWidth,
+                selectedItem.itemData.sizeHeight)
+                );
+
+            inventoryHighlight.SetSize(selectedItem);
+            inventoryHighlight.SetPosition(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y);
         }
     }
+
+
 
 
     private void AddRandomItemToInventory()

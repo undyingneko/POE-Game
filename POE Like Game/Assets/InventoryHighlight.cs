@@ -16,13 +16,17 @@ public class InventoryHighlight : MonoBehaviour
 
     public void SetPosition(ItemGrid targetGrid, InventoryItem targetItem)
     {
-        highlighter.SetParent(targetGrid.transform);
-
         Vector2 position = targetGrid.CalculatePositionOfObjectOnGrid(targetItem,
             targetItem.positionOnGridX,
             targetItem.positionOnGridY
             );
         highlighter.localPosition = position;
+    }
+
+    public void SetParent(ItemGrid targetGrid)
+    {
+        if (targetGrid == null) { return; }
+        highlighter.SetParent(targetGrid.transform);
     }
 
     public void SetPosition(ItemGrid targetGird, InventoryItem targetItem, int posX, int posY)

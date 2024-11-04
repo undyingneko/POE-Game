@@ -123,7 +123,7 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    public bool CheckOverlap(int posX, int posY, int sizeWidth, int sizeHeight, ref InventoryItem overlapItem)
+     public bool CheckOverlap(int posX, int posY, int sizeWidth, int sizeHeight, ref InventoryItem overlapItem)
     {
         for (int x = 0; x < sizeWidth; x++)
         {
