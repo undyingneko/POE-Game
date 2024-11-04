@@ -16,7 +16,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] Transform targetCanvas;
     [SerializeField] InventoryHighlight inventoryHighlight;
     InventoryItem itemToHighlight;
-
+    Vector2Int oldPosition;
     public ItemGrid SelectedItemGrid
     {
         get => selectedItemGrid;
@@ -37,15 +37,40 @@ public class InventoryController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.A))
         {
-            AddRandomItemToInventory();
+            CreateRandomItem();
         }
-     
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            InsertRandomItem();
+        }
+    }
+
+    private void InsertRandomItem()
+    {
+        if (selectedItemGrid == null) { return; }
+
+        CreateRandomItem();
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        InsertItem(itemToInsert);
+    }
+
+    private void InsertItem(InventoryItem itemToInsert)
+    {
+        Vector2Int? posOnGrid = SelectedItemGrid.FindSpaceForObject(itemToInsert);
+
+        if (posOnGrid == null) { return; }
+        
+        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
     }
 
     private void HandleHighlight()
     {
         Vector2Int positionOnGrid = GetTileGridPosition();
-   
+        if (positionOnGrid == oldPosition) { return; }
+
+        oldPosition = positionOnGrid;
+
         if (selectedItem == null)
         {
             itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x, positionOnGrid.y);
@@ -76,7 +101,7 @@ public class InventoryController : MonoBehaviour
 
 
 
-    private void AddRandomItemToInventory()
+    private void CreateRandomItem()
     {
         GameObject newItemGO = Instantiate(inventoryItemPrefab);
 
