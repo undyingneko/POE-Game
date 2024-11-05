@@ -5,6 +5,8 @@ using UnityEngine;
 public class PickUpInteractableObject : MonoBehaviour
 {
     [SerializeField] int coinCount;
+    [SerializeField] ItemData itemData;
+
     private void Start()
     {
         GetComponent<InteractableObject>().interact += PickUp;
@@ -13,6 +15,12 @@ public class PickUpInteractableObject : MonoBehaviour
     public void PickUp(Inventory inventory)
     {
         inventory.AddCurrency(coinCount);
+
+        if (itemData != null)
+        {
+            inventory.AddItem(itemData);
+        }
+
         Debug.Log("You are trying to pick up me!");
         Destroy(gameObject);
     }
