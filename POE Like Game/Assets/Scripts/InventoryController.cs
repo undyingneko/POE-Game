@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    [HideInInspector] private ItemGrid selectedItemGrid;
+    private ItemGrid selectedItemGrid;
+    private EquipmentItemSlot selectedItemSlot;
+
     Vector2Int positionOnGrid;
     InventoryItem selectedItem;
     InventoryItem overlapItem;
@@ -17,6 +19,18 @@ public class InventoryController : MonoBehaviour
     [SerializeField] InventoryHighlight inventoryHighlight;
     InventoryItem itemToHighlight;
     Vector2Int oldPosition;
+    [SerializeField] RectTransform selectedItemParent;
+
+
+    public EquipmentItemSlot SelectedItemSlot
+    {
+        get => selectedItemSlot;
+        set
+        {
+            selectedItemSlot = value;
+        }
+    }
+
     public ItemGrid SelectedItemGrid
     {
         get => selectedItemGrid;
@@ -27,14 +41,14 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         ProcessMouseInput();
-        if (selectedItemGrid == null) { return; }
 
         HandleHighlight();
-        
+
+        if (selectedItemGrid == null) { return; }
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             CreateRandomItem();
@@ -66,6 +80,18 @@ public class InventoryController : MonoBehaviour
 
     private void HandleHighlight()
     {
+        if (selectedItemSlot != null)
+        {
+            inventoryHighlight.Show(false);
+            return;
+        }
+
+        if (selectedItemGrid == null) 
+        {
+            inventoryHighlight.Show(false);
+            return; 
+        }
+
         Vector2Int positionOnGrid = GetTileGridPosition();
         if (positionOnGrid == oldPosition) { return; }
 
@@ -102,8 +128,10 @@ public class InventoryController : MonoBehaviour
 
     private void CreateRandomItem()
     {
+        if (selectedItem != null) { return; }
         int selectedItemID = UnityEngine.Random.Range(0, itemDatas.Count);
-        CreateNewInventoryItem(itemDatas[selectedItemID]);
+        InventoryItem newItem = CreateNewInventoryItem(itemDatas[selectedItemID]);
+        SelectItem(newItem);
     }
 
     public InventoryItem CreateNewInventoryItem(ItemData itemData)
@@ -125,39 +153,84 @@ public class InventoryController : MonoBehaviour
     {
         selectedItem = inventoryItem;
         selectedItemRectTransform = inventoryItem.GetComponent<RectTransform>();
+        selectedItemRectTransform.SetParent(selectedItemParent);
     }
-
 
     private void ProcessMouseInput()
     {
-        // Update the position of the selected item to follow the mouse
+        // // Update the position of the selected item to follow the mouse
+        // if (selectedItem != null)
+        // {
+        //     if (selectedItemRectTransform == null)
+        //     {
+        //         selectedItemRectTransform = selectedItem.GetComponent<RectTransform>();
+        //     }
+        //     selectedItemRectTransform.position = Input.mousePosition;
+        // }
         if (selectedItem != null)
         {
-            if (selectedItemRectTransform == null)
-            {
-                selectedItemRectTransform = selectedItem.GetComponent<RectTransform>();
-            }
             selectedItemRectTransform.position = Input.mousePosition;
         }
 
-        if (selectedItemGrid == null) { return; }
+        if (selectedItemGrid == null && selectedItemSlot == null) { return; }
 
-   
         if (Input.GetMouseButtonDown(0))
         {
-            positionOnGrid = GetTileGridPosition();
-            if (selectedItem == null)
+            if (selectedItemGrid != null)
             {
-                selectedItem = selectedItemGrid.PickUpItem(positionOnGrid);
-                if (selectedItem != null)
-                {
-                    selectedItemRectTransform = selectedItem.GetComponent<RectTransform>();
-                }
+                ItemGridInput();
             }
-            else
+
+            if (selectedItemSlot != null)
             {
-                PlaceItemInput();
+                ItemSlotInput();
             }
+        }
+    }
+
+    private void ItemSlotInput()
+    {
+        if (selectedItem != null)
+        {
+            PlaceItemIntoSlot();
+        }  
+    }
+
+    private void PlaceItemIntoSlot()
+    {
+        if (selectedItemSlot.Check(selectedItem) == false) {return;}
+        
+        InventoryItem replacedItem = selectedItemSlot.ReplaceItem(selectedItem);
+
+        if (replacedItem == null)
+        {
+            NullSelectedItem();
+        }
+        else {
+            SelectItem(replacedItem);
+        }
+    }
+
+    private void NullSelectedItem()
+    {
+        selectedItem = null;
+        selectedItemRectTransform = null;
+    }
+
+    private void ItemGridInput()
+    {
+        positionOnGrid = GetTileGridPosition();
+        if (selectedItem == null)
+        {
+            InventoryItem itemToSelect = selectedItemGrid.PickUpItem(positionOnGrid);
+            if (itemToSelect != null)
+            {
+                SelectItem(itemToSelect);
+            }
+        }
+        else
+        {
+            PlaceItemInput();
         }
     }
 
@@ -196,8 +269,7 @@ public class InventoryController : MonoBehaviour
         }
 
         selectedItemGrid.PlaceItem(selectedItem, positionOnGrid.x, positionOnGrid.y);
-        selectedItem = null;
-        selectedItemRectTransform = null;
+        NullSelectedItem();
 
         if (overlapItem != null)
         {

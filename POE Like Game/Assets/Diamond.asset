@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d21ba355c302764fa4733eac63dbdb3, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: 
+  equipmentSlot: 7
   sizeWidth: 1
   sizeHeight: 1
   icon: {fileID: 21300000, guid: e6c21203d21a23a4dbfd76bbc94f4ba5, type: 3}
