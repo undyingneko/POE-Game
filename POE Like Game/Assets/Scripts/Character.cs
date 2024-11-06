@@ -32,8 +32,6 @@ public class StatsValue
         this.float_value = float_value;
         typeFloat = true;
     }
-
-
 }
 
 [Serializable]
@@ -58,9 +56,35 @@ public class StatsGroup
     {
         return stats[(int)statisticToGet];
     }
+
+    public void Sum(StatsValue toAdd)
+    {
+        StatsValue statsValue = stats[(int)toAdd.statisticType];
+
+        if (toAdd.typeFloat == true)
+        {
+            statsValue.float_value += toAdd.float_value;
+        }
+        else
+        {
+            statsValue.integer_value += toAdd.integer_value;
+        }
+    }
+
+    public void Subtract(StatsValue toSubtract)
+    {
+        StatsValue statsValue = stats[(int)toSubtract.statisticType];
+
+        if (toSubtract.typeFloat == true)
+        {
+            statsValue.float_value -= toSubtract.float_value;
+        }
+        else
+        {
+            statsValue.integer_value -= toSubtract.integer_value;
+        }
+    }
 }
-
-
 
 public enum Attribute
 {
@@ -178,5 +202,30 @@ public class Character : MonoBehaviour
         return stats.Get(statisticToGet);
     }
 
-   
+    public void AddStats(List<StatsValue> statsValues)
+    {
+        for (int i = 0; i < statsValues.Count; i++)
+        {
+            StatsAdd(statsValues[i]);
+        }
+    }
+
+    private void StatsAdd(StatsValue statsValue)
+    {
+        stats.Sum(statsValue);
+    }
+
+    public void SubtractStats(List<StatsValue> statsValues)
+    {
+        for (int i = 0; i < statsValues.Count; i++)
+        {
+            StatsSubtract(statsValues[i]);
+        }
+    }
+
+    private void StatsSubtract(StatsValue statsValue)
+    {
+        stats.Subtract(statsValue);
+    }
+
 }

@@ -23,6 +23,6 @@ public class ItemData : ScriptableObject
     public EquipmentSlot equipmentSlot;
     public int sizeWidth = 1;
     public int sizeHeight = 1;
-
+    public List<StatsValue> stats;
     public Sprite icon;
 }
