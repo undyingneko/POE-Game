@@ -11,10 +11,10 @@ public class DropSystemTest : MonoBehaviour
     {
         if (dropList == null) { return; }
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Debug.Log(dropList.GetDropName());
-        }
+        // if (Input.GetKeyDown(KeyCode.Z))
+        // {
+        //     Debug.Log(dropList.GetDropName());
+        // }
 
     }
 

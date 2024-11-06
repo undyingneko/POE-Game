@@ -15,7 +15,7 @@ public class CharacterMovementInput : MonoBehaviour
 
     public void MoveInput()
     {
-        characterMovement.SetDestination(mouseInput.mouseInputPosition);
+        characterMovement.SetDestination(mouseInput.rayToWorldIntersectionPoint);
     }
 
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractInput : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class InteractInput : MonoBehaviour
     [HideInInspector]
     public Character hoveringOverCharacter;
     InteractHandler interactHandler;
+    Vector2 mousePosition;
 
     private void Awake()
     {
@@ -24,9 +26,14 @@ public class InteractInput : MonoBehaviour
         CheckInteractObject();
     }
 
+    public void MousePositionInput(InputAction.CallbackContext callbackContext)
+    {
+        mousePosition = callbackContext.ReadValue<Vector2>();
+    }
+
     private void CheckInteractObject()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))

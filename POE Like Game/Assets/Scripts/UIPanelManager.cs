@@ -10,18 +10,18 @@ public class UIPanelManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            OpenInventory();
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            OpenQuestPanel();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            OpenStats();
-        }
+        // if (Input.GetKeyDown(KeyCode.I))
+        // {
+        //     OpenInventory();
+        // }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     OpenQuestPanel();
+        // }
+        // if (Input.GetKeyDown(KeyCode.S))
+        // {
+        //     OpenStats();
+        // }
 
            
     }

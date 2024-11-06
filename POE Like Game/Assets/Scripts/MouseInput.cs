@@ -1,19 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseInput : MonoBehaviour
 {
+    Vector3 mouseInputPosition;
     [HideInInspector]
-    public Vector3 mouseInputPosition;
+    public Vector3 rayToWorldIntersectionPoint;
+
+    public void MousePositionUpdate(InputAction.CallbackContext callbackContext)
+    {
+        mouseInputPosition = callbackContext.ReadValue<Vector2>();
+    }
+  
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(mouseInputPosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, float.MaxValue))
         {
-            mouseInputPosition = hit.point;
-        
+            rayToWorldIntersectionPoint = hit.point;
+         
         }
     }
 }

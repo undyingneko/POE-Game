@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PlayerCharacterInput : MonoBehaviour
 {
@@ -17,40 +18,56 @@ public class PlayerCharacterInput : MonoBehaviour
         attackInput = GetComponent<AttackInput>();
         interactInput = GetComponent<InteractInput>();
     }
-    private void Update()
+    // private void Update()
+    // {
+    //     // if (EventSystem.current.IsPointerOverGameObject()) { return; }
+
+    //     // if (Input.GetMouseButton(0))
+    //     // {
+    //     //     if (attackInput.AttackCheck())
+    //     //     {
+    //     //         // Debug.Log("attack");
+    //     //         attackInput.Attack();
+    //     //         return;
+    //     //     }
+    //     //     if (Input.GetMouseButtonDown(0))
+    //     //     {
+    //     //         if (interactInput.InteractCheck())
+    //     //         {
+    //     //             // Debug.Log("interact");
+    //     //             interactInput.Interact();
+    //     //             return;
+    //     //         }
+    //     //     }
+    //     //     if (interactInput.InteractCheck())
+    //     //     {
+    //     //         return;
+    //     //     }
+
+    //     //     // Debug.Log("Move");
+    //     //     interactInput.ResetState();
+    //     //     characterMovementInput.MoveInput();
+    //     // }
+    // }
+    public void LMB_InputHandle(InputAction.CallbackContext callbackContext)
     {
-        if (EventSystem.current.IsPointerOverGameObject()) {return; }
+        if (EventSystem.current.IsPointerOverGameObject()) { return; }
 
-        if (Input.GetMouseButton(0))
+        if (attackInput.AttackCheck())
         {
-            if (attackInput.AttackCheck())
-            {
-                // Debug.Log("attack");
-                attackInput.Attack();
-                return;
-            }
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (interactInput.InteractCheck())
-                {
-                    // Debug.Log("interact");
-                    interactInput.Interact();
-                    return;
-                }
-            }
-            if (interactInput.InteractCheck())
-            {
-                return;
-            }
-
-            // Debug.Log("Move");
-            interactInput.ResetState();
-            characterMovementInput.MoveInput();
+            // Debug.Log("attack");
+            attackInput.Attack();
+            return;
         }
+        if (interactInput.InteractCheck())
+        {
+            // Debug.Log("interact");
+            interactInput.Interact();
+            return;
+        }
+        interactInput.ResetState();
+        characterMovementInput.MoveInput();
     }
-
-
-
 
 
 
