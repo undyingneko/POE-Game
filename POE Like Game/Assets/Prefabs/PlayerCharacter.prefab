@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 5620612714339623007}
   - component: {fileID: 3324824200345585799}
   - component: {fileID: 6277592583670611093}
+  - component: {fileID: 2048790310289503459}
   m_Layer: 6
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -145,7 +146,6 @@ MonoBehaviour:
   hpBar: {fileID: 0}
   hoveringOverObject: {fileID: 0}
   hoveringOverCharacter: {fileID: 0}
-  interactRange: 3.5
 --- !u!114 &5579703109917530474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6013f01578af04a49ae5de4312e62662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactRange: 3.5
+  interactedObject: {fileID: 0}
 --- !u!114 &4236822673299808498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +275,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8393636598519123104}
+--- !u!114 &2048790310289503459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960343260483967732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367a44a350c92214682781c39ac4c6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currency: 0
+  mainInventoryItemGrid: {fileID: 0}
+  inventoryController: {fileID: 0}
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  itemsOnStart:
+  - {fileID: 11400000, guid: 31f6c3047ef707644add3e8f867fd037, type: 2}
+  - {fileID: 11400000, guid: a2ad2bda7d81a5742a745c0b4002e65c, type: 2}
 --- !u!1001 &4181413150038801157
 PrefabInstance:
   m_ObjectHideFlags: 0

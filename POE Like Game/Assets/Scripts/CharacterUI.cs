@@ -6,6 +6,7 @@ public class CharacterUI : MonoBehaviour
 {
     Character character;
     [SerializeField] UIPoolBar hpBar;
+    [SerializeField] UIPoolBar energyBar;
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class CharacterUI : MonoBehaviour
     private void Update()
     {
         hpBar.Show(character.lifePool);
+        energyBar.Show(character.energyPool);
     }
     
 

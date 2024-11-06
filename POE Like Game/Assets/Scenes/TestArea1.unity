@@ -2874,6 +2874,13 @@ MonoBehaviour:
       integer_value: 0
       float_value: 0
     currentValue: 0
+  energyPool:
+    maxValue:
+      statisticType: 0
+      typeFloat: 0
+      integer_value: 0
+      float_value: 0
+    currentValue: 0
   isDead: 0
 --- !u!4 &4413008257432514976
 Transform:
@@ -3357,7 +3364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &5380750049839106015
 GameObject:
   m_ObjectHideFlags: 0

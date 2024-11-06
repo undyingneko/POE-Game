@@ -21,24 +21,29 @@ public class PlayerCharacterInput : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject()) {return; }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             if (attackInput.AttackCheck())
             {
-                Debug.Log("attack");
+                // Debug.Log("attack");
                 attackInput.Attack();
                 return;
             }
-
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (interactInput.InteractCheck())
+                {
+                    // Debug.Log("interact");
+                    interactInput.Interact();
+                    return;
+                }
+            }
             if (interactInput.InteractCheck())
             {
-                Debug.Log("interact");
-                interactInput.Interact();
                 return;
             }
 
-               
-            Debug.Log("Move");
+            // Debug.Log("Move");
             interactInput.ResetState();
             characterMovementInput.MoveInput();
         }
