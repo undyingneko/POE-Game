@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemChestInteractableObject : MonoBehaviour
 {
     Animator animator;
-    [SerializeField] ItemData dropItem;
+    [SerializeField] ItemDropList dropList;
     [SerializeField] float itemDropRange = 2f;
     bool isOpened = false;
     private void Start()
@@ -23,7 +23,7 @@ public class ItemChestInteractableObject : MonoBehaviour
         
         isOpened = true;
         animator.SetBool("Open", true);
-        ItemSpawnManager.instance.SpawnItem(SelecteRandomPosition(), dropItem);
+        ItemSpawnManager.instance.SpawnItem(SelecteRandomPosition(), dropList.GetDrop());
     }
 
     private Vector3 SelecteRandomPosition()
