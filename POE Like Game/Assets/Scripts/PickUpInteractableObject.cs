@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,5 +26,8 @@ public class PickUpInteractableObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-
+    public void SetItem(ItemData itemToSpawn)
+    {
+        itemData = itemToSpawn;
+    }
 }

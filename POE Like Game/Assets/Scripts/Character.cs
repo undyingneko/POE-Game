@@ -9,7 +9,8 @@ public enum Statistic
     Damage,
     Armor,
     AttackSpeed,
-    MoveSpeed
+    MoveSpeed,
+    HealthRegeneration
 
 }
 
@@ -50,6 +51,7 @@ public class StatsGroup
         stats.Add(new StatsValue(Statistic.Armor, 5));
         stats.Add(new StatsValue(Statistic.AttackSpeed, 1f));
         stats.Add(new StatsValue(Statistic.MoveSpeed, 2f));
+        stats.Add(new StatsValue(Statistic.HealthRegeneration, 1f));
     }
 
     internal StatsValue Get(Statistic statisticToGet)
@@ -139,6 +141,15 @@ public class ValuePool
     {
         currentValue = maxValue.integer_value;
     }
+
+    public void Restore(int v)
+    {
+        currentValue += v;
+        if (currentValue > maxValue.integer_value)
+        {
+            currentValue = maxValue.integer_value;
+        }
+    }
 }
 
 
@@ -149,7 +160,9 @@ public class Character : MonoBehaviour
     [SerializeField] StatsGroup stats;
     public ValuePool lifePool;
     public bool isDead;
-    void Start()
+    float lifeRegen;
+
+    private void Start()
     {
         attributes = new AttributeGroup();
         attributes.Init();
@@ -158,6 +171,26 @@ public class Character : MonoBehaviour
         stats.Init();
 
         lifePool = new ValuePool(stats.Get(Statistic.Life));
+    }
+
+    private void Update()
+    {
+        LifeRegeneration();
+    }
+
+    private void LifeRegeneration()
+    {
+        lifeRegen += Time.deltaTime * stats.Get(Statistic.HealthRegeneration).float_value;
+        if (lifeRegen > 1f)
+        {
+            Heal(1);
+            lifeRegen -= 1f;
+        }
+    }
+
+    private void Heal(int v)
+    {
+        lifePool.Restore(v);
     }
 
     public void TakeDamage(int damage)

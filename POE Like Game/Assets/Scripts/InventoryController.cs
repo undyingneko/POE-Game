@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InventoryController : MonoBehaviour
 {
@@ -172,7 +173,17 @@ public class InventoryController : MonoBehaviour
             selectedItemRectTransform.position = Input.mousePosition;
         }
 
-        if (selectedItemGrid == null && selectedItemSlot == null) { return; }
+        if (selectedItemGrid == null && selectedItemSlot == null) 
+        {
+            if (EventSystem.current.IsPointerOverGameObject() == true)
+            {
+                return;
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                ThrowItemAwayProcess();
+            }
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -186,6 +197,20 @@ public class InventoryController : MonoBehaviour
                 ItemSlotInput();
             }
         }
+    }
+
+    private void ThrowItemAwayProcess()
+    {
+        if (selectedItem == null) { return; }
+
+        ItemSpawnManager.instance.SpawnItem(GameManager.instance.playerObject.transform.position, selectedItem.itemData);
+        DestroySelectedItemObject();
+        NullSelectedItem();
+    }
+
+    private void DestroySelectedItemObject()
+    {
+        Destroy(selectedItemRectTransform.gameObject);
     }
 
     private void ItemSlotInput()

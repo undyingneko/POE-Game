@@ -19,6 +19,8 @@ public class ItemChestInteractableObject : MonoBehaviour
     {
         if (isOpened == true) { return; }
 
+        GetComponent<Collider>().enabled = false;
+        
         isOpened = true;
         animator.SetBool("Open", true);
         ItemSpawnManager.instance.SpawnItem(SelecteRandomPosition(), dropItem);
