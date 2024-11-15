@@ -8,7 +8,8 @@ public class InventoryController : MonoBehaviour
 {
     private ItemGrid selectedItemGrid;
     private EquipmentItemSlot selectedItemSlot;
-
+    [SerializeField] MouseInput mouseInput;
+    Vector2 mousePosition;
     Vector2Int positionOnGrid;
     InventoryItem selectedItem;
     InventoryItem overlapItem;
@@ -44,20 +45,27 @@ public class InventoryController : MonoBehaviour
 
     private void Update()
     {
+        ProcessMousePosition();
+        
         ProcessMouseInput();
 
         HandleHighlight();
 
-        if (selectedItemGrid == null) { return; }
+        // if (selectedItemGrid == null) { return; }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            CreateRandomItem();
-        }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            InsertRandomItem();
-        }
+        // if (Input.GetKeyDown(KeyCode.A))
+        // {
+        //     CreateRandomItem();
+        // }
+        // if (Input.GetKeyDown(KeyCode.Z))
+        // {
+        //     InsertRandomItem();
+        // }
+    }
+
+    private void ProcessMousePosition()
+    {
+        mousePosition = mouseInput.mouseInputPosition;
     }
 
     private void InsertRandomItem()
@@ -170,7 +178,7 @@ public class InventoryController : MonoBehaviour
         // }
         if (selectedItem != null)
         {
-            selectedItemRectTransform.position = Input.mousePosition;
+            selectedItemRectTransform.position = mousePosition;
         }
 
         if (selectedItemGrid == null && selectedItemSlot == null) 

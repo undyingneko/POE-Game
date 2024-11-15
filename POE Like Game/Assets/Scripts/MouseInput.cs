@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class MouseInput : MonoBehaviour
 {
-    Vector3 mouseInputPosition;
+    public Vector3 mouseInputPosition;
     [HideInInspector]
     public Vector3 rayToWorldIntersectionPoint;
 
