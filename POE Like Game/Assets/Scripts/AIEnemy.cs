@@ -32,7 +32,7 @@ public class AIEnemy : MonoBehaviour
         {
             timer = 4f;
 
-            attackHandler.Attack(target);
+            // attackHandler.Attack(target);
         }
     }
 

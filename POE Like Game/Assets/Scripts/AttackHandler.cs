@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CharacterCommand;
 using UnityEngine;
 
-public class AttackHandler : MonoBehaviour
+public class AttackHandler : MonoBehaviour, ICommandHanddle
 {
     Character character;
     [SerializeField] float attackRange = 2.5f;
@@ -13,7 +14,7 @@ public class AttackHandler : MonoBehaviour
     Animator animator;
     CharacterMovement characterMovement;
 
-    Character target;
+ 
  
     private void Awake()
     {
@@ -25,50 +26,14 @@ public class AttackHandler : MonoBehaviour
     private void Update()
     {
         AttackTimerTick();
-
-        if (target != null)
-        {
-            ProcessAttack();
-        }
     }
 
-  
-
-    internal void Attack(Character target)
-    {
-        this.target = target;
-        ProcessAttack();
-    }
 
     private void AttackTimerTick()
     {
         if (attackTimer > 0f)
         {
             attackTimer -= Time.deltaTime;
-        }
-    }
-
-    private void ProcessAttack()
-    {
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-
-        if (distance < attackRange)
-        {
-            if (attackTimer > 0f) { return; }
-
-            attackTimer = GetAttackTime();
-
-            characterMovement.Stop();
-            animator.SetTrigger("Attack");
-
-            target.TakeDamage(character.TakeStats(Statistic.Damage).integer_value);
-
-            target = null;
-        }
-
-        else
-        {
-            characterMovement.SetDestination(target.transform.position);
         }
     }
 
@@ -81,5 +46,32 @@ public class AttackHandler : MonoBehaviour
         return attackTime;
     }
 
+    public void ProcessCommand(Command command)
+    {
+        float distance = Vector3.Distance(transform.position, command.target.transform.position);
+
+        if (distance < attackRange)
+        {
+            if (attackTimer > 0f) { return; }
+
+            attackTimer = GetAttackTime();
+
+            characterMovement.Stop();
+            animator.SetTrigger("Attack");
+            DealDamage(command);
+            command.isComplete = true;
+        }
+        else
+        {
+            characterMovement.SetDestination(command.target.transform.position);
+        }
+    }
+
+    private void DealDamage(Command command)
+    {
+        IDamageable target = command.target.GetComponent<IDamageable>();
+        int damage = character.GetDamage();
+        target.TakeDamage(damage);
+    }
 }
 

@@ -221,6 +221,13 @@ MonoBehaviour:
       integer_value: 0
       float_value: 0
     currentValue: 0
+  energyPool:
+    maxValue:
+      statisticType: 1
+      typeFloat: 0
+      integer_value: 0
+      float_value: 0
+    currentValue: 0
   isDead: 0
 --- !u!114 &6768387858029475885
 MonoBehaviour:
@@ -235,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 0}
+  energyBar: {fileID: 0}
 --- !u!114 &5620612714339623007
 MonoBehaviour:
   m_ObjectHideFlags: 0

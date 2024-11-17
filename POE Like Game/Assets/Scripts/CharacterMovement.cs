@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CharacterCommand;
 using UnityEngine;
 using UnityEngine.AI;
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour, ICommandHanddle
 {
     NavMeshAgent agent;
     Character character;
@@ -44,6 +45,9 @@ public class CharacterMovement : MonoBehaviour
     {
         agent.isStopped = true;
     }
-  
- 
+
+    public void ProcessCommand(Command command)
+    {
+      SetDestination(command.worldPoint);
+    }
 }

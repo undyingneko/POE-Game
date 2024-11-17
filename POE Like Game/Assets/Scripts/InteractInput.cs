@@ -12,8 +12,10 @@ public class InteractInput : MonoBehaviour
 
     [HideInInspector]
     public InteractableObject hoveringOverObject;
+
     [HideInInspector]
-    public Character hoveringOverCharacter;
+    public IDamageable attackTarget;
+    
     InteractHandler interactHandler;
     Vector2 mousePosition;
 
@@ -46,23 +48,18 @@ public class InteractInput : MonoBehaviour
         }
     }
     
-    internal void Interact()
-    {
-        interactHandler.interactedObject = hoveringOverObject;
-    }
-
     void UpdateInteractableObject(RaycastHit hit)
     {
         InteractableObject interactableObject = hit.transform.GetComponent<InteractableObject>();
         if (interactableObject != null)
         {
             hoveringOverObject = interactableObject;
-            hoveringOverCharacter = interactableObject.GetComponent<Character>();
+            attackTarget = interactableObject.GetComponent<IDamageable>();
             textOnScreen.text = hoveringOverObject.objectName;
         }
         else
         {
-            hoveringOverCharacter = null;
+            attackTarget = null;
             hoveringOverObject = null;
             textOnScreen.text = "";
         }
@@ -72,9 +69,9 @@ public class InteractInput : MonoBehaviour
 
     private void UpdateHPBar()
     {
-        if (hoveringOverCharacter != null)
+        if (attackTarget != null)
         {
-            hpBar.Show(hoveringOverCharacter.lifePool);
+            // hpBar.Show(attackTarget.lifePool);
         }
         else{
             hpBar.Clear();
@@ -87,10 +84,7 @@ public class InteractInput : MonoBehaviour
         
     }
 
-    internal void ResetState()
-    {
-        interactHandler.ResetState();
-    }
+  
 }
 
 

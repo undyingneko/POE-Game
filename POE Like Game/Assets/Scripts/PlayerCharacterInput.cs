@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using CharacterCommand;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -7,13 +9,14 @@ using UnityEngine.InputSystem;
 public class PlayerCharacterInput : MonoBehaviour
 {
     [SerializeField] MouseInput mouseInput;
-
+    CommandHandler commandHandler;
     CharacterMovementInput characterMovementInput;
     AttackInput attackInput;
     InteractInput interactInput;
     bool isOverUIElement;
     private void Awake()
     {
+        commandHandler = GetComponent<CommandHandler>();
         characterMovementInput = GetComponent<CharacterMovementInput>();
         attackInput = GetComponent<AttackInput>();
         interactInput = GetComponent<InteractInput>();
@@ -22,58 +25,37 @@ public class PlayerCharacterInput : MonoBehaviour
     {
         isOverUIElement = EventSystem.current.IsPointerOverGameObject();
     }
-    // private void Update()
-    // {
-    //     // if (EventSystem.current.IsPointerOverGameObject()) { return; }
-
-    //     // if (Input.GetMouseButton(0))
-    //     // {
-    //     //     if (attackInput.AttackCheck())
-    //     //     {
-    //     //         // Debug.Log("attack");
-    //     //         attackInput.Attack();
-    //     //         return;
-    //     //     }
-    //     //     if (Input.GetMouseButtonDown(0))
-    //     //     {
-    //     //         if (interactInput.InteractCheck())
-    //     //         {
-    //     //             // Debug.Log("interact");
-    //     //             interactInput.Interact();
-    //     //             return;
-    //     //         }
-    //     //     }
-    //     //     if (interactInput.InteractCheck())
-    //     //     {
-    //     //         return;
-    //     //     }
-
-    //     //     // Debug.Log("Move");
-    //     //     interactInput.ResetState();
-    //     //     characterMovementInput.MoveInput();
-    //     // }
-    // }
+    
     public void LMB_InputHandle(InputAction.CallbackContext callbackContext)
     {
         if (isOverUIElement == true) { return; }
 
         if (attackInput.AttackCheck())
         {
-            // Debug.Log("attack");
-            attackInput.Attack();
+            AttackCommand(interactInput.hoveringOverObject.gameObject);
             return;
         }
         if (interactInput.InteractCheck())
         {
-            // Debug.Log("interact");
-            interactInput.Interact();
+            InteractCommand(interactInput.hoveringOverObject.gameObject);
             return;
         }
-        interactInput.ResetState();
-        characterMovementInput.MoveInput();
+        
+        MoveCommand(mouseInput.rayToWorldIntersectionPoint);
     }
 
+    private void MoveCommand(Vector3 point)
+    {
+        commandHandler.SetCommand(new Command(CommandType.Move, point));
+    }
 
+    private void InteractCommand(GameObject target)
+    {
+        commandHandler.SetCommand(new Command(CommandType.Interact, target));
+    }
 
-
+    private void AttackCommand(GameObject target)
+    {
+        commandHandler.SetCommand(new Command(CommandType.Attack, target));
+    }
 }

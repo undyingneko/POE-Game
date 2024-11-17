@@ -156,7 +156,7 @@ public class ValuePool
 
 
 //-----------------------------------------------------------------------------------------------------------
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IDamageable
 {
     [SerializeField] AttributeGroup attributes;
     [SerializeField] StatsGroup stats;
@@ -266,4 +266,9 @@ public class Character : MonoBehaviour
         stats.Subtract(statsValue);
     }
 
+    public int GetDamage()
+    {
+        int damage = TakeStats(Statistic.Damage).integer_value;
+        return damage;
+    }
 }

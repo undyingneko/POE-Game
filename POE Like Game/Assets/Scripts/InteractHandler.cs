@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using CharacterCommand;
 using UnityEngine;
 
-public class InteractHandler : MonoBehaviour
+public class InteractHandler : MonoBehaviour, ICommandHanddle
 {
     [SerializeField] float interactRange = 3.5f;
-    public InteractableObject interactedObject;
     CharacterMovement characterMovement;
     Inventory inventory;
 
@@ -14,32 +14,21 @@ public class InteractHandler : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
         inventory = GetComponent<Inventory>();
     }
-    void Update()
+
+
+    public void ProcessCommand(Command command)
     {
-        if (interactedObject != null)
-        {
-            ProcessInteract();
-        }
-    }
-   
-    void ProcessInteract()
-    {
-        float distance = Vector3.Distance(transform.position, interactedObject.transform.position);
+        float distance = Vector3.Distance(transform.position, command.target.transform.position);
 
         if (distance < interactRange)
         {
-            interactedObject.Interact(inventory);
+            command.target.GetComponent<InteractableObject>().Interact(inventory);
             characterMovement.Stop();
-            ResetState();
+            command.isComplete = true;
         }
         else
         {
-            characterMovement.SetDestination(interactedObject.transform.position);
+            characterMovement.SetDestination(command.target.transform.position);
         }
-    }
-
-    public void ResetState()
-    {
-        interactedObject = null;
     }
 }
