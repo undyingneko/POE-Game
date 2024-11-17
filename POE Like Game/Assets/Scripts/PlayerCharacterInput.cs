@@ -11,12 +11,16 @@ public class PlayerCharacterInput : MonoBehaviour
     CharacterMovementInput characterMovementInput;
     AttackInput attackInput;
     InteractInput interactInput;
-
+    bool isOverUIElement;
     private void Awake()
     {
         characterMovementInput = GetComponent<CharacterMovementInput>();
         attackInput = GetComponent<AttackInput>();
         interactInput = GetComponent<InteractInput>();
+    }
+    private void Update()
+    {
+        isOverUIElement = EventSystem.current.IsPointerOverGameObject();
     }
     // private void Update()
     // {
@@ -51,7 +55,7 @@ public class PlayerCharacterInput : MonoBehaviour
     // }
     public void LMB_InputHandle(InputAction.CallbackContext callbackContext)
     {
-        if (EventSystem.current.IsPointerOverGameObject()) { return; }
+        if (isOverUIElement == true) { return; }
 
         if (attackInput.AttackCheck())
         {

@@ -1728,7 +1728,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342748491}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35852155, y: -0.000000010942599, z: 0.0000000042025365, w: 0.93352145}
+  m_LocalRotation: {x: 0.35852152, y: 0.000000029895727, z: -0.0000000114815375, w: 0.93352145}
   m_LocalPosition: {x: 0, y: 9.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3623,6 +3623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2f17742c729624c941795dd2a78ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseInput: {fileID: 963194229}
   itemDatas:
   - {fileID: 11400000, guid: bfe9699d37d501f4f9f28f4daca2eb4d, type: 2}
   - {fileID: 11400000, guid: 1a16e8efe8d6956418060ffc6e0e6331, type: 2}
@@ -4012,7 +4013,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35852155, y: -0.000000010942599, z: 0.0000000042025365, w: 0.93352145}
+  m_LocalRotation: {x: 0.35852152, y: 0.000000029895727, z: -0.0000000114815375, w: 0.93352145}
   m_LocalPosition: {x: 0, y: 9.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4031,6 +4032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449d3482ad9561d419d6b5eb527ade7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseInputPosition: {x: 0, y: 0, z: 0}
   rayToWorldIntersectionPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194230
 MonoBehaviour:
@@ -4133,6 +4135,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 917660438}
+        m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
+        m_MethodName: ProcessLMBPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d61999e5-0faa-4929-9f0f-56e888dd594d
     m_ActionName: Player/LeftMoseButton[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -4183,6 +4197,182 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a0e27f78-95d5-4efa-aa0b-940b54cfc908
     m_ActionName: Player/OpenQuestPanel[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivateAbility
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: acd584d2-9306-4425-ba40-e7a1ba4d382e
+    m_ActionName: Player/Ability1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivateAbility
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 155dbe5c-2524-4dc1-8ffd-f12440f7d3fb
+    m_ActionName: Player/Ability2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivateAbility
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0b86af73-9f66-4852-bfab-ec24952e8876
+    m_ActionName: Player/Ability3[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivateAbility
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: feceea7e-6c37-43e7-af53-31d12e83b10d
+    m_ActionName: Player/Ability4[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivateAbility
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5cb360dc-4468-4ed4-985d-ffde317e9925
+    m_ActionName: Player/Ability5[/Keyboard/5]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivateAbility
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8244911e-fafe-4d5b-8d68-28f3e437bd38
+    m_ActionName: Player/Ability6[/Keyboard/6]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivatePotion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e1ebd8b1-e8de-421e-b6e4-42fd7cb0156d
+    m_ActionName: Player/Potion1[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivatePotion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3933ceaa-1a76-435c-9979-229f19a77083
+    m_ActionName: Player/Potion2[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivatePotion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1742b545-72aa-4594-b0bf-49cc1263a170
+    m_ActionName: Player/Potion3[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivatePotion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c8cd2435-31c8-428f-8776-3d2f3cf99611
+    m_ActionName: Player/Potion4[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 874561750}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: ActivatePotion
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4d29377a-1ac7-4dfa-8636-293a396e7b07
+    m_ActionName: Player/Potion5[/Keyboard/t]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

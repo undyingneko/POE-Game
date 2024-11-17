@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class InventoryController : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class InventoryController : MonoBehaviour
     Vector2Int oldPosition;
     [SerializeField] RectTransform selectedItemParent;
 
-
+    bool isOverUIElement;
     public EquipmentItemSlot SelectedItemSlot
     {
         get => selectedItemSlot;
@@ -45,6 +46,7 @@ public class InventoryController : MonoBehaviour
 
     private void Update()
     {
+        isOverUIElement = EventSystem.current.IsPointerOverGameObject();
         ProcessMousePosition();
         
         ProcessMouseInput();
@@ -157,6 +159,28 @@ public class InventoryController : MonoBehaviour
 
         return newInventoryItem;
     }
+    public void ProcessLMBPress(InputAction.CallbackContext context)
+    {
+        if (selectedItemGrid == null && selectedItemSlot == null)
+        {
+            if (isOverUIElement)
+            {
+                return;
+            }
+            ThrowItemAwayProcess();
+            
+        }
+
+        if (selectedItemGrid != null)
+        {
+            ItemGridInput();
+        }
+
+        if (selectedItemSlot != null)
+        {
+            ItemSlotInput();
+        }
+    }
 
     public void SelectItem(InventoryItem inventoryItem)
     {
@@ -167,43 +191,9 @@ public class InventoryController : MonoBehaviour
 
     private void ProcessMouseInput()
     {
-        // // Update the position of the selected item to follow the mouse
-        // if (selectedItem != null)
-        // {
-        //     if (selectedItemRectTransform == null)
-        //     {
-        //         selectedItemRectTransform = selectedItem.GetComponent<RectTransform>();
-        //     }
-        //     selectedItemRectTransform.position = Input.mousePosition;
-        // }
         if (selectedItem != null)
         {
             selectedItemRectTransform.position = mousePosition;
-        }
-
-        if (selectedItemGrid == null && selectedItemSlot == null) 
-        {
-            if (EventSystem.current.IsPointerOverGameObject() == true)
-            {
-                return;
-            }
-            if (Input.GetMouseButtonDown(0))
-            {
-                ThrowItemAwayProcess();
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (selectedItemGrid != null)
-            {
-                ItemGridInput();
-            }
-
-            if (selectedItemSlot != null)
-            {
-                ItemSlotInput();
-            }
         }
     }
 
@@ -269,7 +259,7 @@ public class InventoryController : MonoBehaviour
 
     Vector2Int GetTileGridPosition()
     {
-        Vector2 position = Input.mousePosition;
+        Vector2 position = mousePosition;
         if (selectedItem != null)
         {
             position.x -= (selectedItem.itemData.sizeWidth - 1) * ItemGrid.TileSizeWidth / 2;

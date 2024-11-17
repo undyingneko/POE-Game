@@ -32,11 +32,13 @@ public class UIPanelManager : MonoBehaviour
     }
     public void OpenStats()
     {
+
         statsPanel.SetActive(!statsPanel.activeInHierarchy);
         questPanel.SetActive(false);
     }
     public void OpenQuestPanel()
     {
+   
         questPanel.SetActive(!questPanel.activeInHierarchy);
         statsPanel.SetActive(false);
     }
