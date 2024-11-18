@@ -37,6 +37,7 @@ public class PlayerCharacterInput : MonoBehaviour
             AttackCommand(interactInput.hoveringOverObject.gameObject);
             return;
         }
+        
         if (interactInput.InteractCheck())
         {
             InteractCommand(interactInput.hoveringOverObject.gameObject);
@@ -45,6 +46,9 @@ public class PlayerCharacterInput : MonoBehaviour
         
         MoveCommand(mouseInput.rayToWorldIntersectionPoint);
     }
+
+
+
 
     private void MoveCommand(Vector3 point)
     {

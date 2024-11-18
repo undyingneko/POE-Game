@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using CharacterCommand;
 using UnityEngine;
 using UnityEngine.AI;
+
+[RequireComponent(typeof(CanMoveState))]
 public class CharacterMovement : MonoBehaviour, ICommandHanddle
 {
     NavMeshAgent agent;
@@ -11,11 +13,13 @@ public class CharacterMovement : MonoBehaviour, ICommandHanddle
     [SerializeField] float default_MoveSpeed = 3.5f;
     float current_MoveSpeed;
     StatsValue moveSpeed;
+    CanMoveState canMoveState;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         character = GetComponent<Character>();
+        canMoveState = GetComponent<CanMoveState>();
     }
     private void Start()
     {
@@ -37,8 +41,11 @@ public class CharacterMovement : MonoBehaviour, ICommandHanddle
 
     public void SetDestination(Vector3 destinationPosition)
     {
-        agent.isStopped = false;
-        agent.SetDestination(destinationPosition);
+        if (canMoveState.Check() == true)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(destinationPosition);
+        }
     }
 
     internal void Stop()

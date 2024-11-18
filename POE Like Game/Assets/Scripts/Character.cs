@@ -271,4 +271,9 @@ public class Character : MonoBehaviour, IDamageable
         int damage = TakeStats(Statistic.Damage).integer_value;
         return damage;
     }
+
+    public ValuePool GetLifePool()
+    {
+        return lifePool;
+    }
 }

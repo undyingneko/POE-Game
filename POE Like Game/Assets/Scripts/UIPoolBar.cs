@@ -10,8 +10,11 @@ public class UIPoolBar : MonoBehaviour
 
     public void Show(ValuePool targetPool)
     {
-        gameObject.SetActive(true);
-        this.targetPool = targetPool;
+        if (targetPool != null)
+        {
+            this.targetPool = targetPool;
+            gameObject.SetActive(true);
+        }
     }
 
     public void Clear()

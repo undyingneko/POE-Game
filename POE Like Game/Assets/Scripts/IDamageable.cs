@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IDamageable
 {
+    public ValuePool GetLifePool();
     public void TakeDamage(int damage);
 }
