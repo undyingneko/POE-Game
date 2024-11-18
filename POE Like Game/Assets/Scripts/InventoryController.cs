@@ -52,17 +52,6 @@ public class InventoryController : MonoBehaviour
         ProcessMouseInput();
 
         HandleHighlight();
-
-        // if (selectedItemGrid == null) { return; }
-
-        // if (Input.GetKeyDown(KeyCode.A))
-        // {
-        //     CreateRandomItem();
-        // }
-        // if (Input.GetKeyDown(KeyCode.Z))
-        // {
-        //     InsertRandomItem();
-        // }
     }
 
     private void ProcessMousePosition()
@@ -161,6 +150,8 @@ public class InventoryController : MonoBehaviour
     }
     public void ProcessLMBPress(InputAction.CallbackContext context)
     {
+        if(context.phase != InputActionPhase.Started) { return; }
+        
         if (selectedItemGrid == null && selectedItemSlot == null)
         {
             if (isOverUIElement)
@@ -216,7 +207,19 @@ public class InventoryController : MonoBehaviour
         if (selectedItem != null)
         {
             PlaceItemIntoSlot();
-        }  
+        }
+        else {
+            PickUpItemFromSlot();
+        }
+    }
+
+    private void PickUpItemFromSlot()
+    {
+        InventoryItem item = selectedItemSlot.PickUpItem();
+        if (item != null)
+        {
+            SelectItem(item);
+        }
     }
 
     private void PlaceItemIntoSlot()

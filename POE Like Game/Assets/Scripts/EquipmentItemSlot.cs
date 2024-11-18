@@ -30,12 +30,7 @@ public class EquipmentItemSlot : MonoBehaviour
 
     public InventoryItem ReplaceItem(InventoryItem itemToPlace)
     {
-        InventoryItem replaceItem = itemInSlot;
-
-        if (replaceItem != null)
-        {
-            inventory.SubtractStats(replaceItem.itemData.stats);
-        }
+        InventoryItem replaceItem = PickUpItem();
 
         PlaceItem(itemToPlace);
 
@@ -51,5 +46,25 @@ public class EquipmentItemSlot : MonoBehaviour
         RectTransform rt = itemToPlace.GetComponent<RectTransform>();
         rt.SetParent(slotRectTransform);
         rt.position = slotRectTransform.position;
+    }
+
+    internal InventoryItem PickUpItem()
+    {
+        InventoryItem pickUpItem = itemInSlot;
+        if (pickUpItem != null)
+        {
+            inventory.SubtractStats(pickUpItem.itemData.stats);
+            ClearSlot(pickUpItem); 
+        }
+
+        return pickUpItem;
+    }
+
+    private void ClearSlot(InventoryItem pickUpItem)
+    {
+        itemInSlot = null;
+
+        RectTransform rt = pickUpItem.GetComponent<RectTransform>();
+        rt.SetParent(null);
     }
 }
