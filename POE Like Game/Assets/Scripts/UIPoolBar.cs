@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIPoolBar : MonoBehaviour
 {
     [SerializeField] Image bar;
+    [SerializeField] TMPro.TextMeshProUGUI textValue;
     ValuePool targetPool;
 
     public void Show(ValuePool targetPool)
@@ -27,6 +28,12 @@ public class UIPoolBar : MonoBehaviour
     {
         if (targetPool == null) { return; }
         bar.fillAmount = Mathf.InverseLerp(0f, targetPool.maxValue.integer_value, targetPool.currentValue);
+
+        if (textValue != null)
+        {
+            textValue.text = targetPool.currentValue.ToString() + "/" +  targetPool.maxValue.integer_value.ToString();
+        }
+
     }
 
 

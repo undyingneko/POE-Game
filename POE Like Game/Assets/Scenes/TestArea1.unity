@@ -2764,6 +2764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 2.5
   defaultTimeToAttack: 2
+  attackAnimationTime: 1
 --- !u!4 &2839434027246639452
 Transform:
   m_ObjectHideFlags: 0
@@ -3939,6 +3940,7 @@ GameObject:
   - component: {fileID: 7309050121492808692}
   - component: {fileID: 7309050121492808693}
   - component: {fileID: 7309050121492808694}
+  - component: {fileID: 7309050121492808695}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -4788,6 +4790,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: 0
   defeatedPanel: {fileID: 0}
+--- !u!114 &7309050121492808695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358135879609503252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42952a2c9daddde408fbc4c6c31e2246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttacking: 0
 --- !u!4 &7368127436448331860
 Transform:
   m_ObjectHideFlags: 0

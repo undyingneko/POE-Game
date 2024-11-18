@@ -23,7 +23,11 @@ public class ItemChestInteractableObject : MonoBehaviour
         
         isOpened = true;
         animator.SetBool("Open", true);
-        ItemSpawnManager.instance.SpawnItem(SelecteRandomPosition(), dropList.GetDrop());
+        for (int i = 0; i < 3; i++)
+        {
+            ItemSpawnManager.instance.SpawnItem(SelecteRandomPosition(), dropList.GetDrop());
+        }
+          
     }
 
     private Vector3 SelecteRandomPosition()

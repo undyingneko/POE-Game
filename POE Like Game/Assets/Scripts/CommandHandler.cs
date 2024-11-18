@@ -8,9 +8,11 @@ namespace CharacterCommand
 
     public enum CommandType
     {
+        None,
         Move,
         Attack,
         Interact
+
     }
 
 
@@ -102,6 +104,21 @@ namespace CharacterCommand
         {
             moveCommandHandler. ProcessCommand(currentCommand);
         }
+
+        public CommandType GetCurrentCommandType()
+        {
+            if (currentCommand == null)
+            {
+                return CommandType.None;
+            }
+            return currentCommand.commandType;
+        }
+
+
+
+
+
+
     }
 
    
