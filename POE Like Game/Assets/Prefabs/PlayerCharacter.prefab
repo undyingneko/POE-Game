@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 3324824200345585799}
   - component: {fileID: 6277592583670611093}
   - component: {fileID: 2048790310289503459}
+  - component: {fileID: 9128759342832841303}
   m_Layer: 6
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -145,7 +146,6 @@ MonoBehaviour:
   textOnScreen: {fileID: 0}
   hpBar: {fileID: 0}
   hoveringOverObject: {fileID: 0}
-  hoveringOverCharacter: {fileID: 0}
 --- !u!114 &5579703109917530474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 3.5
-  interactedObject: {fileID: 0}
 --- !u!114 &4236822673299808498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +311,18 @@ MonoBehaviour:
   itemsOnStart:
   - {fileID: 11400000, guid: 31f6c3047ef707644add3e8f867fd037, type: 2}
   - {fileID: 11400000, guid: a2ad2bda7d81a5742a745c0b4002e65c, type: 2}
+--- !u!114 &9128759342832841303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960343260483967732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97551a530b1c2eb4abdd5d4e94cca532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4181413150038801157
 PrefabInstance:
   m_ObjectHideFlags: 0
