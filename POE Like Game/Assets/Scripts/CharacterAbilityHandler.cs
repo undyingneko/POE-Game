@@ -82,19 +82,9 @@ public class CharacterAbilityHandler : MonoBehaviour
     }
     public void ActivateAbility(int abilityID)
     {
-        if (abilities == null || abilities.Count == 0)
-        {
-            // Debug.LogError("No abilities available to activate.");
-            return;
-        }
+        if (abilityID >= abilities.Count) { return; }
+        if (abilities[abilityID] == null) { return; }
 
-        if (abilityID < 0 || abilityID >= abilities.Count)
-        {
-            // Debug.LogError($"Invalid abilityID: {abilityID}. Must be between 0 and {abilities.Count - 1}.");
-            return;
-        }
-
-        // Debug.Log($"Activating ability with ID: {abilityID}");
         AbilityContainer abilityContainer = abilities[abilityID];
         ActivateAbility(abilityContainer);
     }
