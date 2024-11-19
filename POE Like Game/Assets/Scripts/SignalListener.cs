@@ -15,7 +15,7 @@ public class SignalListener : MonoBehaviour
 
     private void OnEnable()
     {
-        if (targetSignal = null)
+        if (targetSignal == null)
         {
             Debug.LogError("Target signal is not assigned! !! ");
             return;
