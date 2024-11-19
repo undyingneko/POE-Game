@@ -33,7 +33,7 @@ public class PlayerCharacterInput : MonoBehaviour
     {
         if (commandHandler.GetCurrentCommandType() == CommandType.Interact) { return; }
 
-        if (isLMBPressed)
+        if (isLMBPressed && isOverUIElement == false)
         {
             if (attackInput.AttackTargertCheck())
             {
@@ -50,9 +50,9 @@ public class PlayerCharacterInput : MonoBehaviour
 
     public void LMB_InputHandle(InputAction.CallbackContext callbackContext)
     {
-        if (isOverUIElement == true) { return; }
-
         LMB_Hold(callbackContext);
+        
+        if (isOverUIElement == true) { return; }
 
         if (callbackContext.performed || callbackContext.canceled) { return; }
 

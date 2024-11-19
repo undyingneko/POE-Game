@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 6277592583670611093}
   - component: {fileID: 2048790310289503459}
   - component: {fileID: 9128759342832841303}
+  - component: {fileID: 866986426427206746}
+  - component: {fileID: 1366377584670607851}
   m_Layer: 6
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -185,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 2.5
   defaultTimeToAttack: 2
+  attackAnimationTime: 1
 --- !u!114 &2728187893267744535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +326,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97551a530b1c2eb4abdd5d4e94cca532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &866986426427206746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960343260483967732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42952a2c9daddde408fbc4c6c31e2246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttacking: 0
+--- !u!114 &1366377584670607851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960343260483967732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c59073d0cf9bd4ea93d6a52da203b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingAbility: {fileID: 11400000, guid: 643bd6af063a85a43a8f69dac5dc440b, type: 2}
+  onAbilityChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: UpdateAbility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onCooldownUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AbilityPanel, Assembly-CSharp
+        m_MethodName: UpdateCooldown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &4181413150038801157
 PrefabInstance:
   m_ObjectHideFlags: 0
