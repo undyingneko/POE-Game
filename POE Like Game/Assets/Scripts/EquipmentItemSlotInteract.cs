@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,7 +8,7 @@ public class EquipmentItemSlotInteract : MonoBehaviour, IPointerEnterHandler, IP
     EquipmentItemSlot slot;
     void Awake()
     {
-        inventoryController = FindObjectOfType<InventoryController>();
+        inventoryController = Object.FindFirstObjectByType<InventoryController>();
         slot = GetComponent<EquipmentItemSlot>();
     }
 

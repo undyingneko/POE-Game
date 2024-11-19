@@ -10,7 +10,7 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     ItemGrid itemGrid;
     private void Start()
     {
-        inventoryController = FindObjectOfType<InventoryController>();
+        inventoryController = Object.FindFirstObjectByType<InventoryController>();
         itemGrid = GetComponent<ItemGrid>();
     }
     public void OnPointerEnter(PointerEventData eventData)
