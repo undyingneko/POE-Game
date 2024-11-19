@@ -1,43 +1,69 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using CharacterCommand;
 using UnityEngine;
 
 public class AIEnemy : MonoBehaviour
 {
-    AttackHandler attackHandler;
+    [SerializeField] AIAgentGroup aiGroup;
+    CommandHandler commandHandler;
 
-    private void Awake()
-    {
-        attackHandler = GetComponent<AttackHandler>();
-    }
+
 
     [SerializeField] Character target;
     float timer = 4f;
 
-    private void Start()
+    private void Awake()
     {
-        target = GameManager.instance.playerObject.GetComponent<Character>();
+        commandHandler = GetComponent<CommandHandler>();
+        if (commandHandler == null)
+        {
+            Debug.LogError($"CommandHandler is missing on {gameObject.name}");
+        }
     }
 
-
-    private void Update()
+    private void Start()
     {
-        if (target == null || target.isDead)
+
+        target = GameManager.instance.playerObject.GetComponent<Character>();
+        aiGroup.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        if (aiGroup != null)
         {
+            aiGroup.Remove(this);
+        }
+    }
+
+    internal void UpdateAgent(GameObject targetToAttack)
+    {
+        if (commandHandler == null)
+        {
+            // Debug.LogError("CommandHandler  is null.");
             return;
         }
+        if (targetToAttack == null)
+        {
+            // Debug.LogError("targetToAttack is null.");
+            return;
+        }
+        // if (target == null || target.isDead)
+        // {
+        //     return;
+        // }
+
         timer -= Time.deltaTime;
-        
+
         if (timer < 0f)
         {
             timer = 4f;
 
-            // attackHandler.Attack(target);
+            commandHandler.SetCommand(new Command(CommandType.Attack, targetToAttack));
         }
     }
-
-
-
 }
 
 
