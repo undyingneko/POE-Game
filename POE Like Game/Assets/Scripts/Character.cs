@@ -225,7 +225,7 @@ public class Character : MonoBehaviour, IDamageable
         return damage;
     }
 
-    internal void Restore()
+    public void Restore()
     {
         lifePool.FullRestore();
         isDead = false;

@@ -50,6 +50,7 @@ public class CharacterMovement : MonoBehaviour, ICommandHanddle
 
     internal void Stop()
     {
+        
         agent.isStopped = true;
     }
 
